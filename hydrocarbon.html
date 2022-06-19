@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+				<meta charset="UTF-8">
+				<title>Page title</title>
+</head>
+<body>
+				<input id="carbon" type="text" placeholder="Enter no. of carbon"><br><br>
+				<input id="hydrogen" type="text" placeholder="Enter no. of hydrogen">
+				
+				<button onclick="compound()">Sumbit</button>
+				
+<div id="viewbox">
+<h2>Compound:-</h2>
+ <b id="compound"></b>
+<h2 >No. of bond:-</h2>
+<b><p id="bond"></p></b>
+<b><p id="property"></p></b>
+</div>
+<div id="error">
+				<h1>Dear user <br> you enter wrong config</h1>
+</div>				
+				
+</body>
+<script>
+				console.log("Hello world");
+document.getElementById("viewbox").style.display = "none";
+document.getElementById("error").style.display = "none";
+				const name =["meth","eth","prop","but","pent","Hex","hept","oct","non","dec"];
+				function compound()
+				{
+				document.getElementById("viewbox")
+				var carbon = document.getElementById("carbon").value;
+			var cname = name[carbon-1]
+				var hydrogen = document.getElementById("hydrogen").value;
+				 var h = hydrogen
+				 var n=carbon*2;
+				 h=parseInt(h);
+				 n=parseInt(n);
+	
+	
+	     var alk,bond,sat;
+	     let  prt=false;
+				 if(h===n){
+				 console.log("......")
+				 }
+    if (h===n){
+        alk="ene";
+        bond="double bond(c=c)";
+        sat="unsaturated compound";
+         prt=true
+    }
+    else if(h==n+2){
+        alk="ane"    
+        bond="single bond(c-c)";
+        sat="saturated compound";
+        prt=true
+        
+    }
+    else if (h==n-2){
+        alk="yne"
+        bond="triple bond(c=-c)";
+        sat="unsaturated compound";
+         prt=true
+    }
+   else if (h==n+1){ 
+        alk="yle";
+        bond="single bond(c-c)";
+        sat="saturated compound";
+         prt=true
+   } 
+   else{
+         document.getElementById("error").style.display = "block";
+   }
+   console.log(prt)
+   if(prt){
+   var compound=cname+alk
+   var alk= "alk"+alk
+   console.log(alk,sat,bond)
+   document.getElementById("compound").innerHTML = compound;
+   document.getElementById("bond").innerHTML = bond;
+   document.getElementById("property").innerHTML = "its is an "+alk+" and "+ sat;
+  }
+}
+		
+				 
+</script>
+</html>

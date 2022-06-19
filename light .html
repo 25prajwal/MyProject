@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+ <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+ <style>
+  *{ margin: 0; padding:0; font-family: 'Josefin Sans', sans-serif;}
+.img{
+color;
+}
+  h1{
+   text-align: center;
+   margin-top: 40px;
+   text-transform: uppercase;
+  }
+
+  .lightapp{
+   width: 100%;
+   height: 80vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+figcaption{
+   text-align: center;
+  }
+
+  .onoffbtn{
+   width: 100%;
+   margin-top: -50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+  }
+
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: brown;
+    -webkit-transition: .4s; 
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 41px;
+    width: 40px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider:before{ 
+  -webkit-transform: translateX(40px);    
+  -ms-transform: translateX(40px);
+   transform: translateX(40px); }
+</style>
+</head>
+<body>
+				<h1 id="bulbdata"> Lights ON OFF </h1>
+<br>
+<main class="lightapp" >
+ <figure class="lightstyle">
+  <img src="lightoff.jpg" id="lightid1" onclick="l1(1)" >
+  <figcaption>
+   <p> Light ON OFF </p>
+  </figcaption>
+ </figure>
+ <figure class="lightstyle">
+  <img class="imgg" src="lightoff.jpg" id="lightid2" onclick="l1(2)" > 
+  <figcaption>
+   <p> Light ON OFF </p>
+  </figcaption>
+ </figure>
+ <figure class="lightstyle">
+  <img src="lightoff.jpg" id="lightid3" onclick="l1(3)" >
+  <figcaption>
+  				<p> Light ON OFF </p>
+  </figcaption>
+ </figure>
+ <figure class="lightstyle">
+  <img src="lightoff.jpg" id="lightid4"onclick="l1(4)" >
+  <figcaption>
+   <p> Light ON OFF </p>
+  </figcaption>
+ </figure>
+ <figure class="lightstyle">
+  <img src="lightoff.jpg" id="lightid5" onclick="l1(5)"  >
+  <figcaption>
+   <p> Light ON OFF </p>
+  </figcaption>
+ </figure>
+</main>
+<div class="onoffbtn" >
+ <label class="switch">
+  <input type="checkbox" id="valbtn"> <span class="slider" id="btncolor" 
+  onclick="tubelight()" > </span>
+ </label>
+</div>
+<script>
+
+	console.log("Get script")
+	
+	let vac = 0 
+	let lig = [0,0,0,0,0]
+				
+ const tubelight = () =>{
+ 
+   if(vac===0){ vac = 1}
+   else{vac = 0}
+   document.getElementById("btncolor")	.style.backgroundColor = "brown"	
+  
+  let btext = document.getElementById('bulbdata');
+  for(x=1; x<6; x++){
+   let bid =document.getElementById('lightid'.concat(x));
+  // console.log(bid.src);
+   
+   if(vac==0){
+    bid.src="lightoff.jpg";
+    btext.innerHTML = "Light OFF";
+    btext.style.backgroundcolor = "black";
+    lig = [0,0,0,0,0]
+    document.getElementById("valbtn").checked = true
+   }else{
+    bid.src="lighton.jpg";
+    btext.innerHTML = "Light ON";
+    btext.style.color = "red";
+    lig = [1,1,1,1,1]
+    document.getElementById("valbtn").checked = false
+   }
+
+   /*if(bid.src.match('lighton')){
+    bid.src="lightoff.jpg";
+    btext.innerHTML = "Light OFF";
+    btext.style.color = "black";
+   }else{
+    bid.src="lighton.jpg";
+    btext.innerHTML = "Light ON";
+    btext.style.color = "red";
+   }*/
+  }
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+function l1(x){
+
+
+ let bid =document.getElementById('lightid'.concat(x));
+
+
+
+   if(bid.src.match('lighton')){
+    bid.src="lightoff.jpg";
+    lig[x-1] = 0
+   }else{
+    bid.src="lighton.jpg";
+    lig[x-1] = 1}
+    
+    
+    
+    var ligtf =  Boolean(lig[0]===lig[1]&& lig[1]===lig[2]&& lig[2]===lig[3]&& lig[3]===lig[4])
+    
+let btext =    			document.getElementById('bulbdata');
+
+    if(ligtf==true){
+    				if(lig[0]==1){
+    				   btext.innerHTML = "Light ON";
+          btext.style.color = "red";
+         document.getElementById("valbtn").checked = true;
+ document.getElementById("btncolor")	.style.backgroundColor = "blue"
+    				}
+    				else{
+    				    btext.innerHTML = "Light OFF";
+           btext.style.color = "black"
+           document.getElementById("btncolor")	.style.backgroundColor = "brown"
+    				}
+    }   
+    else{
+         btext.innerHTML = "Light ON OFf";
+         btext.style.color = "blue"
+         document.getElementById("valbtn").checked = false;
+         document.getElementById("btncolor")	.style.backgroundColor = "brown"
+}
+console.log(lig)
+}
+</script>
+</body>
+</html>
